@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>inline</title>
+    <style>
+        .div {
+            display: block;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background-color: black;
+        }
+        .div2 {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background-color: red;
+        }
+        .span {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background-color: yellow;
+        }
+        .span2 {
+            display: inline;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background-color: yellow;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+            font-size: 0;
+        }
+        ul li {
+            display: inline-block;
+            color: white;
+            background-color: coral;
+            padding: 5px 20px;
+            font-size: 16px;
+        }
+        ol {
+            list-style-type: none;
+            display: flex;
+            flex-direction: row;
+            width: fit-content;
+            padding: 0;
+        }
+        ol li {
+            font-family: sans-serif;
+            padding: 5px 20px;
+            background-color: #61dafb;
+            color: #fff;
+        }
+        .item {
+            width: min-content;
+            background-color: #8ca0ff;
+            padding: 5px;
+            margin-bottom: 1em;
+        }
+        /* Used as a length */
+        .min-content {
+            width: min-content;
+            height: min-content;
+            inline-size: min-content;
+            block-size: min-content;
+
+            /* used in grid tracks */
+            grid-template-columns: 200px 1fr min-content;
+
+            /* Global values */
+            min-content: inherit;
+            min-content: initial;
+            min-content: revert;
+            min-content: unset;
+        }
+        /* writing-mode */
+        p.test1 {
+            writing-mode: horizontal-tb;
+        }
+
+        p.test2 {
+            writing-mode: vertical-rl;
+            height: min-content;
+        }
+
+        span.test2 {
+            writing-mode: vertical-rl;
+        }
+    </style>
+</head>
+<body>
+<div class="div">Div</div>
+<div class="div2">Div inline-block</div>
+<span class="span">span inline-block</span>
+<span class="span2">span inline</span>
+<ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+    <li>Item 5</li>
+</ul>
+<ol>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+    <li>Item 5</li>
+</ol>
+<div class="item">Item</div>
+<div class="item">Item with more text in width: fix-content.</div>
+<h2>fix-content</h2>
+<ol>
+<li class="width1">min-content минимально допустимое значение ширини</li>
+<li class="width2">max-content максимальная ширина елемента (intrinsic) в одну строку без переноса</li>
+<li class="width3">fit-content по заполнению</li>
+</ol>
+<h2>The writing-mode Property</h2>
+<p class="test1">Some text with default writing-mode.</p>
+<p>Some text with a span element with a <span class="test2">vertical-rl</span> writing-mode.</p>
+<p class="test2">Some text with writing-mode: vertical-rl.</p>
+<h2>this</h2>
+<div>bind. this вернет новую функцию, .call - передает новый контекст и аргументи, apply - по другому передаються аргументы</div>
+<script>
+    console.log(this) //Глобальный обьект Window //undefined
+    const strict = "use strict"; console.log(this.strict) //undefined
+</script>
+<h2>Разница между null undefined</h2>
+<p><strong>null</strong> - 1. показывает, что переменная пустая, 2. только присвоен, 3. typeof - вернет обьект, 4. true and false // false, 5. арифметических операциях 0</p>
+<pre><code>
+    let a = null;
+    console.log(a);
+</code></pre>
+<pre><code>
+    let obA = null;
+    let b;
+    console.log(typeof a); // object
+    console.log(type of b); // undefined
+    console.log(null instanceof Object) //false
+</code></pre>
+<p><strong>undefined</strong> - 1. переменная обьявлена, но не имеет присвоеного значения; 2. если свойства в обьекте нет; 3. true and false // false 4. арифметических операциях NaN</p>
+<pre><code>
+    const c;
+    console.log(c);// undefined
+    console.log(d);// undefined
+    const d;
+</code></pre>
+<pre><code>
+    let object = {}
+    console.log(object.fake); // undefined
+</code></pre>
+<h3>Разница между null !== undefined</h3>
+<pre><code>
+    null !== undefined //true
+    null != undefined //false
+</code></pre>
+<h3>В aрифметических операциях null --> 0, undefined --> NaN</h3>
+<pre><code>
+    null + 1; //1
+    null / 10; //0
+    null * 10; //0
+
+    undefined + 1; //NaN
+    undefined / 10 //NaN
+    undefined * 10 //NaN
+</code></pre>
+<h3>isFinite: null --> true; undefined --> false</h3>
+<pre><code>
+    isFinite(undefined); //false
+    isFinite(null); //true
+</code></pre>
+<h3>Function isNull and isUndefined</h3>
+<pre><code>
+    const inNull = (val) => !val && typeof val === "object";
+    isNull(null); //true
+</code></pre>
+<pre><code>
+    const isUndefined = (val) => !val && typeof val === "undefined";
+    isUndefined(undefined); //true
+</code></pre>
+<h4>False ложние значения 6</h4>
+<ul>
+    <li>false</li>
+    <li>0</li>
+    <li>""</li>
+    <li>null</li>
+    <li>undefined</li>
+    <li>NaN</li>
+</ul>
+<h4>типи в js</h4>
+<ul>
+    <li>Boolean</li>
+    <li>Null</li>
+    <li>Undefined</li>
+    <li>Number</li>
+    <li>String</li>
+    <li>Symbol</li>
+</ul>
+<p>Массив или обьект</p>
+<script>
+    let arr = [1,2,3]
+    let obj = {0:0, 1:1, num: [1,2,3] }
+    console.log(typeof arr);//object
+    console.log("arr", Array.isArray(arr));//true
+    console.log("obj", Array.isArray(obj));//false
+    console.log("obj.num", Array.isArray(obj.num));//true
+</script>
+<h3>functionDeclaration and functionExpression</h3>
+<p>Function Declaration - функция, объявленная в основном потоке кода. Главное, можна вызвать раньше</p>
+<p>Function Expression - объявление функции в контексте какого-либо выражения, например присваивания.</p>
+<pre><code>
+    function funcDeclaration () {return 0}
+    const funcExpression = function() {return 0}
+
+    console.log(sayHi("1")); //Hello 1
+    console.log(sayHello("2")); //Uncaught ReferenceError: sayHello is not defined
+    function sayHi(val) {return "Hello " + val}
+    const sayHello = function(val) {return "Hello " + val}
+</code></pre>
+<table border="1">
+    <tr>
+        <th>IIFE - самовызывающаяся функция</th>
+        <th>Arrow function</th>
+        <th>async</th>
+    </tr>
+    <tr>
+        <td><pre><code>
+(function () {
+  return "IIFE";
+})();
+</code></pre></td>
+        <td><pre><code>
+(() => {
+  return "Arrow function"
+})();
+</code></pre></td>
+        <td><pre><code>
+(async () => {
+  await return 3;
+})();
+</code></pre></td>
+    </tr>
+</table>
+<p>Type IIFE</p>
+<table border="1">
+    <tr>
+        <th>IIFE</th>
+        <th>IIFE function</th>
+        <th>IIFE named</th>
+    </tr>
+    <tr>
+        <td><pre><code>
+(() => {
+  return "IIFE";
+})();
+        </code></pre></td>
+        <td><pre><code>
+(function () {
+  return "IIFE function";
+})();
+        </code></pre></td>
+        <td><pre><code>
+(function doSomething() {
+  return "IIFE named";
+})();
+        </code></pre></td>
+    </tr>
+</table>
+<h3>Функция duplicate([1,2])</h3>
+<script>
+    const duplicate = arr => [...arr, ...arr];
+    console.log(duplicate([1,2,3,4,5]));
+</script>
+<h3>Метод Filter и остаток от деления</h3>
+<script>
+    let arrResult = [1,2,3,4,5];
+    let result = arrResult.filter(function(el) {
+        return el % 2;//если есть остаток значит нечет
+    })
+    console.log('НЕ четный result el%2',result)
+</script>
+<h3>Унарный оперетор инкримента (префиксный инкримент)</h3>
+<script>
+    var x = 7;
+    console.log(++x) //8
+
+    console.log(x++) //7
+    console.log(x)//8
+
+    var y = 3;
+    console.log("y-->", y++)//3 постфиксный инкремент
+    var z = 4
+    console.log("z-->", ++z)//5 префиксный инкремент
+</script>
+<h3>Числа с плавающей точкой</h3>
+<pre><code>
+    0.1 + 0.2 - 0.2 == 0.1 //false - 0.10000000000000003
+</code></pre>
+<h3>Сравнение обьектов</h3>
+<pre><code>
+var a = {name: "one"}
+var b = {name: "one"}
+console.log(a === b) //false
+</code></pre>
+<h3>bind и аргументи</h3>
+<script>
+    function f1(a,b) { console.log('f1-->', a,b)}
+    let f5 = f1.bind(null, 'foo');
+    f5('bar', 'baz');
+    console.log('f5-->',f5('bar', 'baz'))
+</script>
+<h3>Скоуп переменных</h3>
+<script>
+    let name = 'rabbit';
+    function go() {
+        let name = 'Forest'
+        console.log(`Run, ${name}, run!`)
+    }
+    name = 'Alice';
+    go();
+</script>
+</body>
+</html>

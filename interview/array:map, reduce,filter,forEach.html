@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>for</h2>
+<script>
+const items = ['item1', 'item2', 'item3']
+const copy = []
+
+for (let i =0; i < items.length; i++) {
+    copy.push('New' + items[i]);
+}
+console.log('items ->', items);
+console.log('copy ->', copy);
+</script>
+<h2>for of and array.forEach</h2>
+<script>
+const iterable = [10, 20, 30];
+for (let value of iterable) {
+    value += 1;
+    console.log(value);
+}
+iterable.forEach(function (element, index, array) {
+    copy.push(index + 'New' + element);
+})
+console.log('items ->', items);
+console.log('copy ->', copy);
+</script>
+<h2> filter - сортирует по определенному критерию</h2>
+<p>изменит массив</p>
+<script>
+    let array = [12, 5, 8, 130, 44]
+    let newArray = array.filter(function (element, index, array) {
+        return element > 15;
+    })
+    console.log("newArray ->", newArray)
+    //filter with callback
+    let isBigEnough = (element) => element > 15;
+    let newFilterArray = array.filter(isBigEnough)
+</script>
+<h2>map - вернет новый массив</h2>
+<script>
+let numbers = [1,2,3,4,5];
+let result = [];
+numbers.forEach(elem => {result.push(elem*2)})
+
+let newResult = numbers.map(function (elem) {
+    return elem * 2;
+});
+console.log("newResult with map", newResult)
+// shot with callback
+let multiplyByTwo = (elem) => elem * 2;
+let newResultMap = numbers.map(multiplyByTwo);
+</script>
+<h2>Reduce - вернет один елемент</h2>
+<script>
+//let arr = [1,2,3,4,5,6];
+let sum = 0;
+numbers.forEach(elem => {
+    sum += elem
+})
+let total = array.reduce(function (acc, cur) {
+    return acc + cur;
+}, 10)
+console.log("total", total);
+
+const arrayFruit = ['apple', 'banana', 'peach', 'orange']
+const fruits = arrayFruit.reduce((acc, cur) => {
+    acc[cur] = 1;
+    return acc;
+}, {})
+console.log('fruits', fruits);
+
+</script>
+</body>
+</html>

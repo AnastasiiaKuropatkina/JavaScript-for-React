@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>flex and grid</h3>
+<p>flex - одномерный по заполнению контента</p>
+<p>grid - двомерный, есть дефолтная ширина и высота</p>
+<h3>NaN проверить</h3>
+<code>var a = NaN; isNaN(a) //true</code>
+<h3>Чисто целое</h3>
+<pre><code>
+    var b = 1.5
+    var c = 3
+    console.log(b % 1) //0.5
+    console.log(c % 1) //0
+    if (c % 1 == 0) {
+    console.log("целое");
+    }
+</code></pre>
+<p>Solution 2</p>
+<pre><code>
+    console.log(a === Math.trunc(a))
+</code></pre>
+<h3>меняем местами переменные</h3>
+<pre><code>
+let x = 10;
+let z = "hello";
+[x, z] = [z, x]; console.log("hello -->", x, "10 -->", z);
+</code></pre>
+<p>Solution 2</p>
+<pre><code>
+var first = 100;
+var second = "текст";
+
+var temp = first;
+first = second;
+second = temp;
+</code></pre>
+<p>Solution 3 swap</p>
+<code>b = [a, a = b][0];</code>
+<h3>== ===</h3>
+<p>== c приведением к типам: строка = number //true</p>
+<p>=== без привидение к типам</p>
+<pre><code>
+0 == false //true
+0 === false  //false
+1 == "1" //true
+1 === "1" //false
+null == undefined //true !!!
+null === undefined //false
+'0' == false  //true
+'0' === false //false
+[] == [] //false
+[] === [] //false
+{} == {} //false
+{} === {} //false
+</code></pre>
+<h3>Slice splice</h3>
+<p><strong>Slice</strong></p>
+<ul>
+    <li>меняем текущий масив</li>
+    <li>подставляем свои елементи или удалить</li>
+    <li>возращает массив</li>
+</ul>
+<p><strong>splice</strong></p>
+<ul>
+    <li>arr.splice(start, delCount, new elem, new elem)</li>
+    <li>передаем индекс елемента, или несколько</li>
+    <li>делаем копию масива по индекс, 0 или пустой </li>
+    <li>возращает массив удаленных елементов</li>
+</ul>
+<h3>По возростанию</h3>
+<pre><code>
+let arr = [12,34,1,56,21]
+arr.sort((a,b) => a-b)
+arr.sort() //по длине строки, в порядке по unicode
+</code></pre>
+<h3>Конструктор ES6</h3>
+<pre><code>
+function Bike(model, color) {
+    this.model = model;
+    this.color = color;
+    }
+Bike.prototype.getDetails = function() {
+    return this.mode + ' bike has' + this.color + ' color'
+}
+// unnamed class
+class Bike1 {
+    constructor (model, color) {
+        this.model = model;
+        this.color = color;
+    }
+    getDetails() {
+        return this.mode + ' bike has' + this.color + ' color'
+    }
+}
+let bike = new Bike1("RT-10", "red")
+</code></pre>
+<pre><code>
+// named class
+const Product = class Bike2 {
+    constructor (model, color) {
+        this.model = model;
+        this.color = color;
+    }
+    getDetails() {
+        return this.mode + ' bike has' + this.color + ' color'
+    }
+}
+new Product("RT-10", "red")
+</code></pre>
+<h3>Как узнать пустой ли обьект</h3>
+<p>Solution 1 Object.keys()</p>
+<pre><code>
+const obj = {}
+const emptyOrder = Object.keys(obj).length == 0 //true
+const emptyOrderShot = !Object.keys(obj).length; //true
+</code></pre>
+<p>Solution 2 JSON.stringify()</p>
+<pre><code>
+const emptyOrderJson = JSON.stringify(obj) === "{}";
+</code></pre>
+<p>Solution 3 key</p>
+<pre><code>
+function isEmpty(obj) {
+    for (var key in obj) {
+        return false;
+    }
+    return true
+}
+</code></pre>
+<p>Solution 4 hasOwnProperty</p>
+<pre><code>
+const obj = {};
+function isEmptyObj(obj) {
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+        return false;
+    }
+    return true;
+    }
+}
+console.log(isEmptyObj(obj));
+</code></pre>
+<p>Solution 5 Lodash</p>
+<pre><code>
+_.isEmpty([1,2,3])
+</code></pre>
+<h3>Первая заглавная буква в строке</h3>
+<script>
+function capitalizeFirstLetter(string) {
+    const arrFromStr = string.split("");
+    console.log("arrFromStr", arrFromStr);
+    arrFromStr[0] = arrFromStr[0].toUpperCase();
+    return arrFromStr.join('');
+}
+console.log(capitalizeFirstLetter('this is new string!'))
+</script>
+<h3>Object.freeze(obj)</h3>
+<p>Object.freeze(obj) - Метод Object.freeze() замораживает объект: это значит, что он предотвращает добавление новых свойств к объекту, удаление старых свойств из объекта и изменение существующих свойств</p>
+<p>НО! Object.freeze - видит только примитивы, изминения вложених массивах и обектах не видет</p>
+<p>Object.isSealed(obj) - Определяет, является ли объект запечатанным (sealed).</p>
+<h3>Найти минимальное и максимальное значение в массиве</h3>
+<script>
+let arrNew = [70, 30, 40, 50, 10];
+function findMin(arr) {
+    if(arr.length === 0) return;
+
+    let min = Infinity;
+    arr.forEach((number) => {
+        if(number < min) {
+            min = number;
+        }
+    })
+    console.log('min', min);
+    return min
+
+}
+findMin(arrNew)
+function findMax(arr) {
+    return Math.max(...arr);
+}
+findMax(arrNew)
+</script>
+<h3>Split - spread со строкой</h3>
+console.log([...'John Resig']) //['J', 'o', 'h', 'n', ' ', 'R', 'e', 's', 'i', 'g']
+<h3>Получить символ из строки no index</h3>
+console.log('Welcome'[0])//W
+//сабстринг и сплайс
+<h3>Как получить массив уникальних елементов, удалить дубликаты</h3>
+сonsole.log(new Set([1,1,2,3,4,4,5])) //Set(5) {1, 2, 3, 4, 5}
+сonsole.log([...new Set([1,1,2,3,4,4,5])]) // [1, 2, 3, 4, 5]
+<h3>Как удалить елементи из массива</h3>
+let city = ['new', 'old', 'down']
+city.length[0];
+<h3>Как отсортировать массив только нечетные</h3>
+const arr = [11,3,4,5,6,7,8,93];
+//const aaa = [3,4,5,6,10,8];
+const isEven = arr.filter(elem => elem % 2 == 0)
+console.log('четные', isEven);
+const isOdd = arr.filter(elem => Math.abs(elem % 2) == 1)
+const aaa = [...isOdd, ...isEven];
+console.log(aaa)
+}
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UniqArray</title>
+</head>
+<body>
+<code>const arr = [1,1,2,2,3,3,4,4];</code>
+<h2>Solution 1. new Set</h2>
+<pre><code>
+const uniqArr = new Set(arr);
+const uniqArray = Array.from(new Set(array));
+</code></pre>
+<h2>Solution 2. filter() + indexOf</h2>
+<pre><code>
+let debug = [];
+const uniqArrayFilter = arr.filter((item, index) => {
+    debug.push({item, index, indexOf: arr.indexOf(item)})
+    return index === arr.indexOf(item);
+})
+console.table(debug)
+</code></pre>
+<h2>Solution 3. Reduce</h2>
+<pre><code>
+const uniqArrayReduce = arr.reduce((uniq, item) => {//uniq - array
+    return uniq.includes(item) ? uniq : [...uniq, item]
+}, [])
+</code></pre>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "fundamentaljs",
+  "version": "1.0.0",
+  "main": "01-arrowFunction.js",
+  "devDependencies": {},
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "parcel": "^2.7.0"
+  }
+}

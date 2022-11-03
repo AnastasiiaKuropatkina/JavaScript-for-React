@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Найти минимальное и максимальное значение в массиве</title>
+</head>
+<body>
+<h2>Найти минимальное и максимальное значение в массиве</h2>
+<h3>Solution 1. Math.min and Math.max</h3>
+<pre><code>
+var myArray = [1, 5, 6, 2, 3];
+var m = Math.min(...myArray);
+console.log(m)
+</code></pre>
+<h2>Solution 2. Math.min.apply</h2>
+<pre><code>
+var myArray = [1, 5, 6, 2, 3];
+var m = Math.min.apply(null, myArray);
+console.log(m)
+</code></pre>
+<h2>Solution 3. forEach</h2>
+<pre><code>
+let arrNew = [70, 30, 40, 50, 10];
+function findMin(arr) {
+    if(arr.length === 0) return;
+
+    //let min = Infinity;
+    let min = arr[0];
+    arr.forEach((number) => {
+        if(number < min) {
+            min = number;
+        }
+    })
+    return min
+}
+findMax(arrNew)
+function findMax(arr) {
+    return Math.max(...arr);
+}
+findMax(arrNew)
+//console.log('min', min);
+</code></pre>
+<h2>Solution 4. reduce</h2>
+<pre><code>
+let arrOfNumbers = [1, -4653, -3, 4, 5, 54, 684, 7, 8, 9, 10];
+
+function max(list) {
+  return list.reduce((a, b) => a > b ? a : b);
+}
+console.log(max([...arrOfNumbers]))
+</code></pre>
+</body>
+</html>

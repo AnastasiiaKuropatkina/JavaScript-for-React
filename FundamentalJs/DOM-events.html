@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dom-события в трех актах</title>
+</head>
+<body>
+<p>1.C помощью html атрибута</p>
+<p><button onclick="alert('wow, click!')">Click me by onclick</button>
+    <button onclick="load()">Click me by load</button>
+</p>
+<script>
+    function load() {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', 'some-send-data.json', false);
+        xhr.send();
+    }
+</script>
+<p>2. C помощью свойства Dom объекта</p>
+<p><button id="btn">Click me by id</button></p>
+<script>
+    document.getElementById('btn').onclick = function() {
+    alert('OK!')
+    };
+</script>
+<p>3. C помощью метода addEventListener</p>
+<p><button id="btn2">Click me by addEventListener</button></p>
+<p>Принимает 3 аргумента: 1 type - click; 2 listener - function, 3 options (true) - очередность вызова dom elementa</p>
+<script>
+    document.getElementById('btn2')
+    .addEventListener('click', function (event) {
+        console.log(event);
+        console.log("event.target -->", event.target);
+        console.log("event.currentTarget === this -->", event.currentTarget);//указует на текущий объект
+        console.log("event.preventDefault() -->", event.preventDefault());//отменяет стандартное поведение, например, переход по ссылке
+        console.log("event.stopPropagation() -->", event.stopPropagation());//остонавливает сплитие событий к родителю
+        console.log("event.stopImmediatePropagation() -->", event.stopImmediatePropagation());//остонавливает сплитие событий даже если есть другие события
+        alert('Wow!');
+    }, {
+        capture: true,
+        once: true,//only once
+        passive: true
+    })
+</script>
+<ul>
+    <li>Milk</li>
+    <li>Coffee</li>
+    <li>Tea</li>
+</ul>
+<script>
+    let $li = document.getElementsByTagName('li');
+
+    for (var i = 0; i < $li.length; i++) {
+        $li[i].addEventListener('click', e => {
+            e.currentTarget.classList.toggle('done');
+        })
+    }
+</script>
+<p>Делегирование событий на родительский елемент</p>
+<ul class="menu">
+    <li>Milk</li>
+    <li>Coffee</li>
+    <li>Tea</li>
+</ul>
+<script>
+    let $ul = document.querySelector('ul');
+    //let element = document.getElementsByClassName('menu') ;
+    $ul.addEventListener('click', myFunction);
+    function myFunction(e) {
+        console.log('e.target.tagName -->', e.target.tagName)
+        if (e.target.tagName === 'LI') {
+            e.target.classList.toggle('done!!!!');
+        }
+    }
+</script>
+</body>
+</html>

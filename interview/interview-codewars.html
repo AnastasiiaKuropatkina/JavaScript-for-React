@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>interview 30</title>
+</head>
+<body>
+<h2>Что такое тернарний оператор</h2>
+num = 1.222;
+1 == 2 ? "true" : "false"
+<h2>Разница между Array.forEach - Array.map</h2>
+<p>Array.forEach - перебрать массив, не изменяет массив</p>
+<p>Array.map - возращает новый изминненый массив</p>
+<script>
+let arr = [1,2,3];
+arr.forEach((item, index) => {
+    arr[index] = 10
+})
+console.log(arr); //[10, 10, 10]
+</script>
+<h2>Про псевдомассив arguments</h2>
+<script>
+    function foo(a) {
+        console.log("arguments.length -->", arguments.length);
+    }
+    foo(1,2,3)
+</script>
+<h2>typeof function</h2>
+<script>
+function a() {
+    return 2;
+}
+console.log(typeof a); // 'function'
+console.log(typeof {}); // 'object'
+console.log(typeof []); // 'object'
+</script>
+<h2>Как проверить, что в переменной массив: Array.isArray / instanceof Array</h2>
+Array.isArray(arr);
+arr instanceof Array;
+<h2>parseFloat</h2>
+<script>
+console.log(parseFloat('12.3.4')) //12.3
+console.log(parseFloat('12.34'))
+console.log(parseInt('12.34')) //12
+</script>
+<h2>Array.indexOf</h2>
+<script>
+let newArray = [0,1,2,4]
+console.log(newArray.indexOf(3)) //-1 поиск елемента в массиве indexOf("apple", 3);
+console.log(newArray.includes(4)); //true
+</script>
+<h2>onClick</h2>
+<pre><code>
+div.onClick = function() {alert(1);}
+div.onClick = function() {alert(2);} //alert2
+</code></pre>
+<p>addEventListener - не перезаписует клик</p>
+<pre><code>
+element.addEventListener("click", function() {
+document.getElementById("demo").innerHTML = "Hello World";
+});
+</code></pre>
+<p>removeEventListener - удалить, передать ссылку на туже функцию, потому она должна быть именнованая</p>
+<h2>переход истории страници</h2>
+<p>Window.history методы back forward</p>
+<code>history.back();     // equivalent to clicking back button</code>
+<code>history.go(-1);     // equivalent to history.back();</code>
+<h2>Текущий url страници + редирект</h2>
+<code>window.location.href = 'newPage.html'</code>
+<h2>spread i rest</h2>
+<pre><code>
+'string'.split('');
+[...'string'];
+let num = [1,2,3];
+let num2 = [...num];
+let num3 = num2.concat()
+</code></pre>
+<h2>rest остаток, псевдомасив argument</h2>
+<pre><code>
+function add(a,b,c,...rest) {
+    return rest.reduce((acc, cur) => total + current)
+}
+console.log(add(1,2))//3
+console.log(1,2,3,4,5)//
+</code></pre>
+<h2>Деструктуризация</h2>
+<script>
+const user = {}
+const {name: newName, //перейменовать
+    lastName,
+    city = 'Kyiv',//дефолтное
+    bestFriends,
+    //bestFriends: {name: friendName }
+} = user // дефолтне значення змінних
+
+</script>
+<h2>Promose.all - дождаться результата отработки промисов и если они зафулфилени, или error если что-то упало</h2>
+<pre><code>
+Promise.all([Promise1, Promise2, Promise3]) {
+    .then(result => {console.log(result)})
+    .catch(error => console.log(`Error in promises ${error}`))
+}
+</code></pre>
+<h2>Lucky number</h2>
+<script>console.log('!!!');
+let num = 611224233355555;
+function fn(num) {
+    //num = [...'' + num];
+    num = Array.from('' + num)
+    console.log('num ->', num);
+    let res = {};
+    for (let i = 0; i < num.length; i++) {
+        if (res[num[i]]) {
+            res[num[i]]++
+        } else {
+            res[num[i]] = 1
+        }
+    }
+    console.log('res ->', res);
+    let result = 0
+    for(let key in res) {
+        if (res[key] == key) {
+            result = Math.max(result, key)
+        }
+    }
+    return result
+}
+console.log(fn(num));
+</script>
+
+</body>
+</html>
